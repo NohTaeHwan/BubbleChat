@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText et_id;
     private EditText et_password;
-
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -64,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Log.d("MainActivity", "signed:success", task.getException());
                             Toast.makeText(MainActivity.this, "login success", Toast.LENGTH_SHORT).show();
-                            //화면 전환 추가하기
+                            // 로그인 시 화면 전환
+                            Intent intent = new Intent(getApplicationContext(), loginActivity.class);
+                            startActivity(intent);
+                            Log.d("MainActivity", "login!!");
                         }
                         else{
                             Log.d("MainActivity", "signed:failed", task.getException());
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         Log.d("MainActivity", "clicked: " + loginId + ", " + loginPassword);
+
     }
 
     public void onClickSignUp(View v){
